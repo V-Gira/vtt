@@ -91,7 +91,7 @@ export function useSession(props: IProps) {
   useEffect(
     function syncCharacterSheetForMe() {
       const everyone = getEveryone(session);
-
+      console.log("hi")
       everyone.forEach((player) => {
         if (!player.character) {
           return;
@@ -412,7 +412,8 @@ export function useSession(props: IProps) {
   }
 
   function getEveryone(session: ISession) {
-    return [session.gm, ...session.gm.npcs, ...session.players];
+    const players = Object.values(session.players);
+    return [session.gm, ...session.gm.npcs, ...players];
   }
 
   return {

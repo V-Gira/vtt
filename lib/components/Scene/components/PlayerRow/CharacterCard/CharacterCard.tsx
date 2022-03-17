@@ -55,7 +55,6 @@ export const CharacterCard: React.FC<{
   });
 
   function handleSave() {
-    console.log("saving")
     const updatedCharacter =
       characterManager.actions.getCharacterWithNewTimestamp();
     props.onChange?.(updatedCharacter);

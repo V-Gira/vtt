@@ -86,10 +86,6 @@ import { WindowPortal } from "../WindowPortal/WindowPortal";
 import { CharacterCard } from "./components/PlayerRow/CharacterCard/CharacterCard";
 import { PlayerRow } from "./components/PlayerRow/PlayerRow";
 import { useHiddenIndexCardRecord } from "./hooks/useHiddenIndexCardRecord";
-import {
-  IPlayerInteraction,
-  PlayerInteractionFactory,
-} from "../../routes/Play/types/IPlayerInteraction";
 
 export enum SceneMode {
   PlayOnline,
@@ -114,7 +110,6 @@ type IProps =
       idFromParams?: undefined;
       isLoading?: undefined;
       error?: undefined;
-      onPlayerInteraction?(interaction: IPlayerInteraction): void;
     }
   | {
       mode: SceneMode.PlayOnline;
@@ -126,7 +121,6 @@ type IProps =
       error: any;
       shareLink: string;
       idFromParams?: string;
-      onPlayerInteraction?(interaction: IPlayerInteraction): void;
     }
   | {
       mode: SceneMode.PlayOffline;
@@ -136,7 +130,6 @@ type IProps =
       idFromParams?: undefined;
       isLoading?: undefined;
       error?: undefined;
-      onPlayerInteraction?(interaction: IPlayerInteraction): void;
     };
 
 export const Session: React.FC<IProps> = (props) => {
@@ -253,13 +246,11 @@ export const Session: React.FC<IProps> = (props) => {
   ) {
     if (isGM) {
       sessionManager.actions.updatePlayerCharacter(playerId, updatedCharacter);
-    } else {
-      props.onPlayerInteraction?.(
-        PlayerInteractionFactory.updatePlayerCharacter(
-          playerId,
-          updatedCharacter
-        )
-      );
+    }  else {
+      connectionsManager?.actions.sendToHost<IPeerActions>({
+        action: "update-character",
+        payload: updatedCharacter,
+      });
     }
   }
 
