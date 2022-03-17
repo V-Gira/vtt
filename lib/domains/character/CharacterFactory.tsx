@@ -2,7 +2,8 @@ import produce from "immer";
 import { getUnix } from "../dayjs/getDayJS";
 import { IDiceCommandSetId } from "../dice/Dice";
 import { Id } from "../Id/Id";
-import { CharacterTemplates } from "./CharacterType";
+import { Migrator } from "../migration/Migrator";
+import { ICharacterTemplate } from "./CharacterType";
 import {
   BlockType,
   IBlock,
@@ -23,44 +24,21 @@ import {
   IV2Character,
   IV3Character,
   IV3Section,
-  V3Position,
+  IV4Character,
+  IV4Page,
+  V3Position
 } from "./types";
 
 export const CharacterFactory = {
   latestVersion: 4,
-  async make(type: CharacterTemplates): Promise<ICharacter> {
-    const templateFunctions: Record<
-      CharacterTemplates,
-      () => Promise<ICharacter>
-    > = {
-      /**
-       * @author @RPDeshaies
-       */
-      [CharacterTemplates.ChargeRPG]: async () => {
-        const jsonData = await import("./character-templates/ChargeRPG.json");
-        return this.makeFromJson(jsonData);
-      },
-      [CharacterTemplates.MtMTuxedo]: async () => {
-        const jsonData = await import("./character-templates/MinutesToMidnight/tuxedo.json");
-        return this.makeFromJson(jsonData);
-      },
-      [CharacterTemplates.MtMTrenchcoat]: async () => {
-        const jsonData = await import("./character-templates/MinutesToMidnight/trenchcoat.json");
-        return this.makeFromJson(jsonData);
-      },
-      [CharacterTemplates.Blank]: async () => {
-        const jsonData = await import("./character-templates/Blank.json");
-        return this.makeFromJson(jsonData);
-      },
-    };
-
-    const newCharacter = await templateFunctions[type]();
+  async make(template: ICharacterTemplate): Promise<ICharacter> {
+    const result = await template.importFunction();
+    const newCharacter = this.makeFromJson(result);
     return {
       ...newCharacter,
       id: Id.generate(),
       name: "",
       group: undefined,
-      template: type,
       lastUpdated: getUnix(),
     };
   },
@@ -73,15 +51,31 @@ export const CharacterFactory = {
     const migratedSheet = this.migrate(newSheet);
     return migratedSheet;
   },
-  migrate(c: any): ICharacter {
+  migrate(character: any): ICharacter {
     try {
-      const v2: IV2Character = migrateV1CharacterToV2(c);
-      const v3: IV3Character = migrateV2CharacterToV3(v2);
-      const v4: ICharacter = migrateV3CharacterToV4(v3);
-      return v4;
+      const migrate = Migrator.makeMigrationFunction<ICharacter>([
+        {
+          from: 1,
+          migrate: migrateV1CharacterToV2,
+        },
+        {
+          from: 2,
+          migrate: migrateV2CharacterToV3,
+        },
+        {
+          from: 3,
+          migrate: migrateV3CharacterToV4,
+        },
+        {
+          from: 4,
+          migrate: migrateV4CharacterToV5,
+        },
+      ]);
+      const migrated = migrate(character);
+      return migrated;
     } catch (error) {
       console.error(error);
-      return c;
+      return character;
     }
   },
   duplicate(c: ICharacter): ICharacter {
@@ -205,16 +199,14 @@ export const CharacterFactory = {
       draft.id = Id.generate();
       draft.label += " Copy";
 
-      draft.sections.left.forEach((s) => {
-        s.id = Id.generate();
-        s.blocks.forEach((b) => {
-          b.id = Id.generate();
-        });
-      });
-      draft.sections.right.forEach((s) => {
-        s.id = Id.generate();
-        s.blocks.forEach((b) => {
-          b.id = Id.generate();
+      draft.rows.forEach((r) => {
+        r.columns.forEach((c) => {
+          c.sections.forEach((s) => {
+            s.id = Id.generate();
+            s.blocks.forEach((b) => {
+              b.id = Id.generate();
+            });
+          });
         });
       });
     });
@@ -383,18 +375,18 @@ export function migrateV2CharacterToV3(v2: IV2Character): IV3Character {
   };
 }
 
-export function migrateV3CharacterToV4(v3: IV3Character): ICharacter {
+export function migrateV3CharacterToV4(v3: IV3Character): IV4Character {
   if (v3.version !== 3) {
-    return v3 as unknown as ICharacter;
+    return v3 as unknown as IV4Character;
   }
 
-  const v4: ICharacter = {
+  const v4: IV4Character = {
     id: v3.id,
     name: v3.name,
     group: v3.group,
     lastUpdated: v3.lastUpdated,
     wide: false,
-    pages: v3.pages.map((page): IPage => {
+    pages: v3.pages.map((page): IV4Page => {
       const leftSections = page.sections.filter(
         (s) => s.position === V3Position.Left
       );
@@ -424,4 +416,32 @@ export function migrateV3CharacterToV4(v3: IV3Character): ICharacter {
     version: 4,
   };
   return v4;
+}
+
+function migrateV4CharacterToV5(v4: IV4Character): ICharacter {
+  const v5: ICharacter = {
+    id: v4.id,
+    name: v4.name,
+    group: v4.group,
+    lastUpdated: v4.lastUpdated,
+    wide: false,
+    pages: v4.pages.map((page): IPage => {
+      return {
+        id: page.id,
+        label: page.label,
+        rows: [
+          {
+            columns: [
+              { sections: page.sections.left },
+              { sections: page.sections.right },
+            ],
+          },
+        ],
+      };
+    }),
+    playedDuringTurn: v4.playedDuringTurn,
+    version: 5,
+  };
+
+  return v5;
 }

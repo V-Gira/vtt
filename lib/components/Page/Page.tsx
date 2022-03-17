@@ -490,11 +490,15 @@ export const Page: React.FC<{
         </Grid>
 
         <Grid item xs={xsSize} sm={smSize} className={itemClass}>
-          <PageNavLink
+        <PageNavLink
             data-cy="page.toggle-dark-mode"
             tooltip={t("menu.toggle-theme")}
             onClick={() => {
-              settingsManager.actions.toggleThemeMode();
+              if (settingsManager.state.themeMode === "dark") {
+                settingsManager.actions.setThemeMode("light");
+              } else {
+                settingsManager.actions.setThemeMode("dark");
+              }
             }}
             label={
               <>

@@ -86,6 +86,10 @@ import { WindowPortal } from "../WindowPortal/WindowPortal";
 import { CharacterCard } from "./components/PlayerRow/CharacterCard/CharacterCard";
 import { PlayerRow } from "./components/PlayerRow/PlayerRow";
 import { useHiddenIndexCardRecord } from "./hooks/useHiddenIndexCardRecord";
+import {
+  IPlayerInteraction,
+  PlayerInteractionFactory,
+} from "../../routes/Play/types/IPlayerInteraction";
 
 export enum SceneMode {
   PlayOnline,
@@ -110,6 +114,7 @@ type IProps =
       idFromParams?: undefined;
       isLoading?: undefined;
       error?: undefined;
+      onPlayerInteraction?(interaction: IPlayerInteraction): void;
     }
   | {
       mode: SceneMode.PlayOnline;
@@ -121,6 +126,7 @@ type IProps =
       error: any;
       shareLink: string;
       idFromParams?: string;
+      onPlayerInteraction?(interaction: IPlayerInteraction): void;
     }
   | {
       mode: SceneMode.PlayOffline;
@@ -130,6 +136,7 @@ type IProps =
       idFromParams?: undefined;
       isLoading?: undefined;
       error?: undefined;
+      onPlayerInteraction?(interaction: IPlayerInteraction): void;
     };
 
 export const Session: React.FC<IProps> = (props) => {
@@ -239,6 +246,22 @@ export const Session: React.FC<IProps> = (props) => {
       });
     }
   };
+
+  function handleUpdateCharacter(
+    playerId: string,
+    updatedCharacter: ICharacter
+  ) {
+    if (isGM) {
+      sessionManager.actions.updatePlayerCharacter(playerId, updatedCharacter);
+    } else {
+      props.onPlayerInteraction?.(
+        PlayerInteractionFactory.updatePlayerCharacter(
+          playerId,
+          updatedCharacter
+        )
+      );
+    }
+  }
 
   const handleAssignDuplicateCharacterSheet = (
     playerId: string,
@@ -837,6 +860,9 @@ export const Session: React.FC<IProps> = (props) => {
                     onCharacterDialogOpen={() => {
                       setCharacterDialogPlayerId(player.id);
                     }}
+                    onChange={(updatedCharacter) => {
+                      handleUpdateCharacter(player.id, updatedCharacter);
+                    }}
                     onRoll={(newDiceRollResult) => {
                       handleSetPlayerRoll(player.id, newDiceRollResult);
                     }}
@@ -865,6 +891,9 @@ export const Session: React.FC<IProps> = (props) => {
                     characterSheet={npc.character}
                     onCharacterDialogOpen={() => {
                       setCharacterDialogPlayerId(npc.id);
+                    }}
+                    onChange={(updatedCharacter) => {
+                      handleUpdateCharacter(npc.id, updatedCharacter);
                     }}
                     onRoll={(newDiceRollResult) => {
                       handleSetPlayerRoll(npc.id, newDiceRollResult);
