@@ -3,7 +3,6 @@ import { Route, Switch, useLocation } from "react-router-dom";
 import { DocRoutes } from "../../domains/documents/DocRoutes";
 import { SrdsRoute } from "../../routes/SrdsRoute/SrdsRoute";
 import { StoryBuilderRoute } from "../../routes/StoryBuilder/StoryBuilderRoute";
-import StoryDiceRoute from "../../routes/StoryDice/StoryDiceRoute";
 import { Doc } from "../Doc/Doc";
 import { LoadingRoute } from "./LoadingRoute";
 
@@ -29,12 +28,10 @@ const PlayOfflineRoute = React.lazy(
   () => import("../../routes/Play/PlayOfflineRoute")
 );
 const PlayRoute = React.lazy(() => import("../../routes/Play/PlayRoute"));
-const PlayBJNRoute = React.lazy(() => import("../../routes/Play/PlayBJNRoute"));
 const SceneRoute = React.lazy(() => import("../../routes/Scene/SceneRoute"));
 const CardCollection = React.lazy(
   () => import("../../routes/CardCollection/CardCollectionRoute")
 );
-const OracleRoute = React.lazy(() => import("../../routes/Oracle/OracleRoute"));
 const SeelieSquireRoute = React.lazy(
   () => import("../../routes/SeelieSquire/SeelieSquireRoute")
 );
@@ -88,13 +85,6 @@ export const AppRouter = () => {
         />
         <Route
           exact
-          path={"/oracle"}
-          render={() => {
-            return <OracleRoute />;
-          }}
-        />
-        <Route
-          exact
           path={"/draw"}
           render={() => {
             return <DrawRoute />;
@@ -105,20 +95,6 @@ export const AppRouter = () => {
           path={"/play"}
           render={(props) => {
             return <PlayRoute {...props} />;
-          }}
-        />
-        <Route
-          exact
-          path={"/playBJN"}
-          render={(props) => {
-            return <PlayBJNRoute {...props} />;
-          }}
-        />
-        <Route
-          exact
-          path={"/playBJN/:id"}
-          render={(props) => {
-            return <PlayBJNRoute {...props} />;
           }}
         />
         <Route
@@ -209,14 +185,6 @@ export const AppRouter = () => {
             return <StoryBuilderRoute />;
           }}
         />
-        <Route
-          exact
-          path={"/story-dice"}
-          render={() => {
-            return <StoryDiceRoute />;
-          }}
-        />
-
         <Route
           path="*"
           render={() => {

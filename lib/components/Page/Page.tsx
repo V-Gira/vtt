@@ -1,10 +1,8 @@
 import { css } from "@emotion/css";
-import BookIcon from "@mui/icons-material/Book";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
 import BugReportIcon from "@mui/icons-material/BugReport";
-import CasinoIcon from "@mui/icons-material/Casino";
-import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
+import ComputerIcon from "@mui/icons-material/Computer";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import FiberNewIcon from "@mui/icons-material/FiberNew";
@@ -344,16 +342,6 @@ export const Page: React.FC<{
                         label: "Story Builder",
                         icon: <LocalLibraryIcon />,
                       },
-                      {
-                        to: "/story-dice",
-                        label: "Story Dice",
-                        icon: <CasinoIcon />,
-                      },
-                      {
-                        to: "/oracle",
-                        label: t("menu.oracle"),
-                        icon: <Icons.EyeIcon />,
-                      },
                     ],
                   },
                 ]}
@@ -403,25 +391,10 @@ export const Page: React.FC<{
                         label: t("menu.srds"),
                         icon: <LibraryBooksIcon />,
                       },
-                      {
-                        to: "/success-with-style",
-                        label: t("menu.success-with-style-blog"),
-                        icon: <DoneOutlineIcon />,
-                      },
-                      {
-                        to: "/seeliesquire",
-                        label: t("menu.seelie-squire"),
-                        icon: <LocalLibraryIcon />,
-                      },
-                      {
-                        to: "/blog",
-                        label: t("menu.blog"),
-                        icon: <BookIcon />,
-                      },
                     ],
                   },
                   {
-                    label: "Support",
+                    label: "Support Fari",
                     links: [
                       {
                         to: "https://www.patreon.com/bePatron?u=43408921",
@@ -488,9 +461,22 @@ export const Page: React.FC<{
             </Box>
           </PageNavLink>
         </Grid>
-
         <Grid item xs={xsSize} sm={smSize} className={itemClass}>
-        <PageNavLink
+          <PageNavLink
+            data-cy="page.use-theme-from-system-preferences"
+            tooltip={t("menu.use-theme-from-system-preferences")}
+            onClick={() => {
+              settingsManager.actions.setThemeMode(undefined);
+            }}
+            label={
+              <>
+                <ComputerIcon />
+              </>
+            }
+          />
+        </Grid>
+        <Grid item xs={xsSize} sm={smSize} className={itemClass}>
+          <PageNavLink
             data-cy="page.toggle-dark-mode"
             tooltip={t("menu.toggle-theme")}
             onClick={() => {
@@ -503,9 +489,9 @@ export const Page: React.FC<{
             label={
               <>
                 {settingsManager.state.themeMode === "dark" ? (
-                  <Brightness7Icon />
+                  <LightModeIcon />
                 ) : (
-                  <Brightness4Icon />
+                  <DarkModeIcon />
                 )}
               </>
             }

@@ -1,8 +1,8 @@
 import { css } from "@emotion/css";
-import CreateIcon from "@mui/icons-material/Create";
+import LaunchIcon from "@mui/icons-material/Launch";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
-import FaceIcon from "@mui/icons-material/Face";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
@@ -483,9 +483,9 @@ export function PlayerRow(
                     }}
                   >
                     {hasCharacterSheet ? (
-                      <FaceIcon htmlColor={borderColor} />
+                      <LaunchIcon htmlColor={borderColor} />
                     ) : (
-                      <CreateIcon htmlColor={borderColor} />
+                      <UploadFileIcon htmlColor={borderColor} />
                     )}
                   </IconButton>
                 </span>

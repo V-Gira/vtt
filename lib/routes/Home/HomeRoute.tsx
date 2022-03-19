@@ -1,21 +1,21 @@
 import { css, cx } from "@emotion/css";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+// import FavoriteIcon from "@mui/icons-material/Favorite";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import HelpIcon from "@mui/icons-material/Help";
-import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+// import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import Box, { BoxProps } from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container, { ContainerProps } from "@mui/material/Container";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import Hidden from "@mui/material/Hidden";
-import Rating from "@mui/material/Rating";
+// import Rating from "@mui/material/Rating";
 import { ThemeProvider, useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router";
-import discord from "../../../images/services/discord.png";
+// import discord from "../../../images/services/discord.png";
 import lokalise from "../../../images/services/lokalise.png";
 import { RouterLink } from "../../components/AppLink/AppLink";
 import { ConditionalWrapper } from "../../components/ConditionalWrapper/ConditionalWrapper";
@@ -34,13 +34,13 @@ import { isWebRTCSupported } from "../../hooks/usePeerJS/isWebRTCSupported";
 import { useTranslate } from "../../hooks/useTranslate/useTranslate";
 import { WikiItems } from "../SrdsRoute/SrdsRoute";
 
-const Patrons = [
-  "James Micu",
-  "Randy Oest",
-  "Ryan Singer",
-  "Aeife O'Brien",
-  "Fluffydumplin",
-];
+// const Patrons = [
+//   "James Micu",
+//   "Randy Oest",
+//   "Ryan Singer",
+//   "Aeife O'Brien",
+//   "Fluffydumplin",
+// ];
 
 const Sponsors: Array<{ image: string; name: string; link: string }> = [
   {
@@ -85,7 +85,7 @@ export const HomeRoute: React.FC<{}> = () => {
         description={t("home-route.meta.description")}
       />
       <Box>
-        <DarkBox px="2rem" pb="1rem" mt="-2rem" textAlign="left" linear>
+        <DarkBox px="2rem" pb="2rem" mt="-2rem" textAlign="left" linear>
           <Box
             className={css({ maxWidth: FariToolbarMaxWidth, margin: "0 auto" })}
           >
@@ -105,7 +105,7 @@ export const HomeRoute: React.FC<{}> = () => {
                   color="primary"
                   uppercase={false}
                 >
-                  {"Fari App"}
+                  {"Singularity App"}
                 </FateLabel>
               </Grid>
             </Grid>
@@ -128,7 +128,7 @@ export const HomeRoute: React.FC<{}> = () => {
             </Grid>
           </Box>
         </DarkBox>
-        <DarkBox linear px="2rem">
+        {/* <DarkBox linear px="2rem">
           <Box
             className={css({ maxWidth: FariToolbarMaxWidth, margin: "0 auto" })}
           >
@@ -146,8 +146,8 @@ export const HomeRoute: React.FC<{}> = () => {
               </LightBox>
             </Box>
           </Box>
-        </DarkBox>
-        <LightBox maxWidth="lg" mb={sectionsSeparator}>
+        </DarkBox> */}
+        <LightBox maxWidth="lg" mb={sectionsSeparator} mt={sectionsSeparator}>
           {renderPlayButtons()}
         </LightBox>
 
@@ -161,7 +161,7 @@ export const HomeRoute: React.FC<{}> = () => {
         >
           {renderFirstActionCards()}
         </LightBox>
-        <DarkBox
+        {/* <DarkBox
           title={t("home-route.sections.join-community.title")}
           subTitle={t("home-route.sections.join-community.sub-title")}
           px="2rem"
@@ -170,8 +170,8 @@ export const HomeRoute: React.FC<{}> = () => {
           maxWidth="sm"
         >
           {renderCommunity()}
-        </DarkBox>
-        <LightBox
+        </DarkBox> */}
+        {/* <LightBox
           title={t("home-route.sections.tools.title")}
           px="2rem"
           py="2rem"
@@ -179,15 +179,15 @@ export const HomeRoute: React.FC<{}> = () => {
           maxWidth="lg"
         >
           {renderSecondActionCards()}
-        </LightBox>
-        <DarkBox
+        </LightBox> */}
+        {/* <DarkBox
           title={t("home-route.sections.patreon.title")}
           px="2rem"
           py="5rem"
           maxWidth="sm"
         >
           {renderPatrons()}
-        </DarkBox>
+        </DarkBox> */}
         {renderSponsors()}
         <LightBox px="2rem" mb={sectionsSeparator} maxWidth="lg">
           {renderThirdActionCards()}
@@ -253,37 +253,37 @@ export const HomeRoute: React.FC<{}> = () => {
     );
   }
 
-  function renderPatrons() {
-    return (
-      <Box textAlign="center">
-        <Box mb="2rem">
-          <Grid container spacing={1} justifyContent="center">
-            {Patrons.map((patron, i) => {
-              const isLast = i === Patrons.length - 1;
+  // function renderPatrons() {
+  //   return (
+  //     <Box textAlign="center">
+  //       <Box mb="2rem">
+  //         <Grid container spacing={1} justifyContent="center">
+  //           {Patrons.map((patron, i) => {
+  //             const isLast = i === Patrons.length - 1;
 
-              return (
-                <React.Fragment key={i}>
-                  <Grid item>
-                    <FateLabel>{patron}</FateLabel>
-                  </Grid>
-                  {!isLast && (
-                    <Grid item>
-                      <FateLabel>{"•"}</FateLabel>
-                    </Grid>
-                  )}
-                </React.Fragment>
-              );
-            })}
-          </Grid>
-        </Box>
-        <Box mb="2rem">
-          <Grid container item justifyContent="center">
-            <Patreon />
-          </Grid>
-        </Box>
-      </Box>
-    );
-  }
+  //             return (
+  //               <React.Fragment key={i}>
+  //                 <Grid item>
+  //                   <FateLabel>{patron}</FateLabel>
+  //                 </Grid>
+  //                 {!isLast && (
+  //                   <Grid item>
+  //                     <FateLabel>{"•"}</FateLabel>
+  //                   </Grid>
+  //                 )}
+  //               </React.Fragment>
+  //             );
+  //           })}
+  //         </Grid>
+  //       </Box>
+  //       <Box mb="2rem">
+  //         <Grid container item justifyContent="center">
+  //           <Patreon />
+  //         </Grid>
+  //       </Box>
+  //     </Box>
+  //   );
+  // }
 
   function renderSponsors() {
     return (
@@ -442,28 +442,6 @@ export const HomeRoute: React.FC<{}> = () => {
         },
       },
       {
-        label: t("home-route.cards.dice-roller.title"),
-        description: t("home-route.cards.dice-roller.description"),
-        ctaLabel: t("home-route.cards.dice-roller.cta"),
-        icon: (props: { className: string }) => (
-          // https://icons8.com/icons/plasticine
-          <img
-            className={props.className}
-            src="https://img.icons8.com/plasticine/100/000000/dice.png"
-          />
-        ),
-        to: "/dice",
-      },
-    ];
-    return (
-      <Box>
-        <HomeRouteCards cards={cards} />
-      </Box>
-    );
-  }
-  function renderSecondActionCards() {
-    const cards: Array<IHomeRouteCard> = [
-      {
         label: t("home-route.cards.data.title"),
         description: t("home-route.cards.data.description"),
         ctaLabel: t("home-route.cards.data.cta"),
@@ -476,33 +454,19 @@ export const HomeRoute: React.FC<{}> = () => {
         ),
         to: "/data",
       },
-      {
-        label: t("home-route.cards.dice-pool.title"),
-        description: t("home-route.cards.dice-pool.description"),
-        ctaLabel: t("home-route.cards.dice-pool.cta"),
-        icon: (props: { className: string }) => (
-          // https://icons8.com/icons/plasticine
-          <img
-            className={props.className}
-            src="https://img.icons8.com/plasticine/100/000000/box.png"
-          />
-        ),
-        to: "/dice-pool",
-      },
-      {
-        label: t("home-route.cards.play-solo.title"),
-        description: t("home-route.cards.play-solo.description"),
-        ctaLabel: t("home-route.cards.play-solo.cta"),
-
-        icon: (props: { className: string }) => (
-          // https://icons8.com/icons/plasticine
-          <img
-            className={props.className}
-            src="https://img.icons8.com/plasticine/100/000000/crystal-ball.png"
-          />
-        ),
-        to: "/oracle",
-      },
+      // {
+      //   label: t("home-route.cards.dice-roller.title"),
+      //   description: t("home-route.cards.dice-roller.description"),
+      //   ctaLabel: t("home-route.cards.dice-roller.cta"),
+      //   icon: (props: { className: string }) => (
+      //     // https://icons8.com/icons/plasticine
+      //     <img
+      //       className={props.className}
+      //       src="https://img.icons8.com/plasticine/100/000000/dice.png"
+      //     />
+      //   ),
+      //   to: "/dice",
+      // },
     ];
     return (
       <Box>
@@ -510,22 +474,71 @@ export const HomeRoute: React.FC<{}> = () => {
       </Box>
     );
   }
+  // function renderSecondActionCards() {
+  //   const cards: Array<IHomeRouteCard> = [
+  //     {
+  //       label: t("home-route.cards.data.title"),
+  //       description: t("home-route.cards.data.description"),
+  //       ctaLabel: t("home-route.cards.data.cta"),
+  //       icon: (props: { className: string }) => (
+  //         // https://icons8.com/icons/plasticine
+  //         <img
+  //           className={props.className}
+  //           src="https://img.icons8.com/plasticine/100/000000/cloud-backup-restore.png"
+  //         />
+  //       ),
+  //       to: "/data",
+  //     },
+  //     {
+  //       label: t("home-route.cards.dice-pool.title"),
+  //       description: t("home-route.cards.dice-pool.description"),
+  //       ctaLabel: t("home-route.cards.dice-pool.cta"),
+  //       icon: (props: { className: string }) => (
+  //         // https://icons8.com/icons/plasticine
+  //         <img
+  //           className={props.className}
+  //           src="https://img.icons8.com/plasticine/100/000000/box.png"
+  //         />
+  //       ),
+  //       to: "/dice-pool",
+  //     },
+  //     {
+  //       label: t("home-route.cards.play-solo.title"),
+  //       description: t("home-route.cards.play-solo.description"),
+  //       ctaLabel: t("home-route.cards.play-solo.cta"),
+
+  //       icon: (props: { className: string }) => (
+  //         // https://icons8.com/icons/plasticine
+  //         <img
+  //           className={props.className}
+  //           src="https://img.icons8.com/plasticine/100/000000/crystal-ball.png"
+  //         />
+  //       ),
+  //       to: "/oracle",
+  //     },
+  //   ];
+  //   return (
+  //     <Box>
+  //       <HomeRouteCards cards={cards} />
+  //     </Box>
+  //   );
+  // }
 
   function renderThirdActionCards() {
     const cards: Array<IHomeRouteCard> = [
-      {
-        label: t("home-route.cards.blog.title"),
-        description: t("home-route.cards.blog.description"),
-        ctaLabel: t("home-route.cards.blog.cta"),
-        icon: (props: { className: string }) => (
-          // https://icons8.com/icons/plasticine
-          <img
-            className={props.className}
-            src="https://img.icons8.com/plasticine/100/000000/comments.png"
-          />
-        ),
-        to: "/blog",
-      },
+      // {
+      //   label: t("home-route.cards.blog.title"),
+      //   description: t("home-route.cards.blog.description"),
+      //   ctaLabel: t("home-route.cards.blog.cta"),
+      //   icon: (props: { className: string }) => (
+      //     // https://icons8.com/icons/plasticine
+      //     <img
+      //       className={props.className}
+      //       src="https://img.icons8.com/plasticine/100/000000/comments.png"
+      //     />
+      //   ),
+      //   to: "/blog",
+      // },
       {
         label: t("home-route.cards.wiki.title"),
         description: t("home-route.cards.wiki.description"),
@@ -560,57 +573,57 @@ export const HomeRoute: React.FC<{}> = () => {
     );
   }
 
-  function renderCommunity() {
-    return (
-      <Grid container justifyContent="center" alignItems="baseline" spacing={2}>
-        <Grid item md={6} xs={12} container justifyContent="center" spacing={2}>
-          <Grid item xs={12}>
-            <QuestionAnswerIcon
-              className={css({
-                width: "50px",
-                height: "auto",
-              })}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              color="primary"
-              variant="outlined"
-              size="large"
-              component={RouterLink}
-              to={"/feature-requests"}
-            >
-              {t("home-route.sections.request-a-feature.cta")}
-            </Button>
-          </Grid>
-        </Grid>
-        <Grid item md={6} xs={12} container justifyContent="center" spacing={2}>
-          <Grid item xs={12}>
-            <img
-              src={discord}
-              className={css({
-                width: "50px",
-                height: "auto",
-              })}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              color="primary"
-              variant="outlined"
-              size="large"
-              component="a"
-              href="https://discord.gg/vMAJFjUraA"
-              target="_blank"
-              rel="noreferrer"
-            >
-              {t("home-route.sections.join-community.cta")}
-            </Button>
-          </Grid>
-        </Grid>
-      </Grid>
-    );
-  }
+  // function renderCommunity() {
+  //   return (
+  //     <Grid container justifyContent="center" alignItems="baseline" spacing={2}>
+  //       <Grid item md={6} xs={12} container justifyContent="center" spacing={2}>
+  //         <Grid item xs={12}>
+  //           <QuestionAnswerIcon
+  //             className={css({
+  //               width: "50px",
+  //               height: "auto",
+  //             })}
+  //           />
+  //         </Grid>
+  //         <Grid item xs={12}>
+  //           <Button
+  //             color="primary"
+  //             variant="outlined"
+  //             size="large"
+  //             component={RouterLink}
+  //             to={"/feature-requests"}
+  //           >
+  //             {t("home-route.sections.request-a-feature.cta")}
+  //           </Button>
+  //         </Grid>
+  //       </Grid>
+  //       <Grid item md={6} xs={12} container justifyContent="center" spacing={2}>
+  //         <Grid item xs={12}>
+  //           <img
+  //             src={discord}
+  //             className={css({
+  //               width: "50px",
+  //               height: "auto",
+  //             })}
+  //           />
+  //         </Grid>
+  //         <Grid item xs={12}>
+  //           <Button
+  //             color="primary"
+  //             variant="outlined"
+  //             size="large"
+  //             component="a"
+  //             href="https://discord.gg/vMAJFjUraA"
+  //             target="_blank"
+  //             rel="noreferrer"
+  //           >
+  //             {t("home-route.sections.join-community.cta")}
+  //           </Button>
+  //         </Grid>
+  //       </Grid>
+  //     </Grid>
+  //   );
+  // }
 
   function renderOpenSource() {
     return (
@@ -645,104 +658,85 @@ export const HomeRoute: React.FC<{}> = () => {
     );
   }
 
-  function renderHeading() {
-    return (
-      <Box display="flex" flexDirection="column" height="100%">
-        <Typography
-          variant="h3"
-          component="h1"
-          className={css({
-            marginBottom: ".5rem",
-            textAlign: "left",
-            fontWeight: theme.typography.fontWeightBold,
-            letterSpacing: "-0.035em",
-          })}
-        >
-          <>{t("home-route.header.title")}</>
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          component="h2"
-          className={css({
-            marginBottom: "2rem",
-            textAlign: "left",
-          })}
-        >
-          {t("home-route.header.subtitle")}
-        </Typography>
-        <Box mb="1rem" display="flex">
-          <Grid container>
-            <Grid item lg={6} xs={12}>
-              <Button
-                fullWidth
-                variant="contained"
-                color="primary"
-                size="large"
-                className={css({ height: "3rem" })}
-                onClick={() => {
-                  history.push("/play");
-                  logger.track("home.start_online_game");
-                }}
-              >
-                {t("home-route.header.cta")}
-              </Button>
-            </Grid>
-          </Grid>
-        </Box>
-        <Box mb="1rem" display="flex">
-          <Grid container>
-            <Grid item lg={6} xs={12}>
-              <Button
-                fullWidth
-                variant="contained"
-                color="primary"
-                size="large"
-                className={css({ height: "3rem" })}
-                onClick={() => {
-                  history.push("/playBJN");
-                  logger.track("home.start_online_game");
-                }}
-              >
-                {t("home-route.header.bjn")}
-              </Button>
-            </Grid>
-          </Grid>
-        </Box>
-        <Box
-          className={css({
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            justifyContent: "flex-end",
-            flex: "1 0 auto",
-          })}
-        >
-          <Box>
-            <Rating
-              defaultValue={5}
-              readOnly
-              size="large"
-              icon={
-                <FavoriteIcon
-                  className={css({ fontSize: "inherit", color: "#ff6d75" })}
-                />
-              }
-            />
-          </Box>
-          <Box>
-            <Typography
-              variant="subtitle2"
-              className={css({
-                fontWeight: theme.typography.fontWeightBold,
-              })}
-            >
-              {t("home-route.header.stats")}
-            </Typography>
-          </Box>
-        </Box>
-      </Box>
-    );
-  }
+  // function renderHeading() {
+  //   return (
+  //     <Box display="flex" flexDirection="column" height="100%">
+  //       <Typography
+  //         variant="h3"
+  //         component="h1"
+  //         className={css({
+  //           marginBottom: ".5rem",
+  //           textAlign: "left",
+  //           fontWeight: theme.typography.fontWeightBold,
+  //           letterSpacing: "-0.035em",
+  //         })}
+  //       >
+  //         <>{t("home-route.header.title")}</>
+  //       </Typography>
+  //       <Typography
+  //         variant="subtitle1"
+  //         component="h2"
+  //         className={css({
+  //           marginBottom: "2rem",
+  //           textAlign: "left",
+  //         })}
+  //       >
+  //         {t("home-route.header.subtitle")}
+  //       </Typography>
+  //       <Box mb="1rem" display="flex">
+  //         <Grid container>
+  //           <Grid item lg={6} xs={12}>
+  //             <Button
+  //               fullWidth
+  //               variant="contained"
+  //               color="primary"
+  //               size="large"
+  //               className={css({ height: "3rem" })}
+  //               onClick={() => {
+  //                 history.push("/play");
+  //                 logger.track("home.start_online_game");
+  //               }}
+  //             >
+  //               {t("home-route.header.cta")}
+  //             </Button>
+  //           </Grid>
+  //         </Grid>
+  //       </Box>
+  //       <Box
+  //         className={css({
+  //           display: "flex",
+  //           flexDirection: "column",
+  //           alignItems: "flex-start",
+  //           justifyContent: "flex-end",
+  //           flex: "1 0 auto",
+  //         })}
+  //       >
+  //         <Box>
+  //           <Rating
+  //             defaultValue={5}
+  //             readOnly
+  //             size="large"
+  //             icon={
+  //               <FavoriteIcon
+  //                 className={css({ fontSize: "inherit", color: "#ff6d75" })}
+  //               />
+  //             }
+  //           />
+  //         </Box>
+  //         <Box>
+  //           <Typography
+  //             variant="subtitle2"
+  //             className={css({
+  //               fontWeight: theme.typography.fontWeightBold,
+  //             })}
+  //           >
+  //             {t("home-route.header.stats")}
+  //           </Typography>
+  //         </Box>
+  //       </Box>
+  //     </Box>
+  //   );
+  // }
 };
 
 HomeRoute.displayName = "HomeRoute";

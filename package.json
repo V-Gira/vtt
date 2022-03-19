@@ -1,8 +1,8 @@
 {
-  "name": "fari",
-  "version": "5.3.4",
-  "description": "Fari is the best Fate RPG companion application. License: AGPL-3.0-or-later",
-  "author": "René-Pier Deshaies-Gélinas",
+  "name": "singularity",
+  "version": "1.0.0",
+  "description": "Singularity is a Virtual Tabletop application based on Fari. License: AGPL-3.0-or-later",
+  "author": "V-Jira",
   "license": "AGPL-3.0",
   "main": "index.js",
   "engines": {

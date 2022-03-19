@@ -19,7 +19,7 @@ import { Page } from "../../components/Page/Page";
 import { PageMeta } from "../../components/PageMeta/PageMeta";
 import { Images } from "../../constants/Images";
 import { useTranslate } from "../../hooks/useTranslate/useTranslate";
-import { IPossibleLanguages } from "../../services/internationalization/InternationalizationService";
+// import { IPossibleLanguages } from "../../services/internationalization/InternationalizationService";
 
 export function SrdsRoute() {
   const { t } = useTranslate();
@@ -49,7 +49,6 @@ export function Srds() {
       />
       <SrdItems />
       <Box pt="1rem" />
-      <ToolkitItems />
       <Box pt="2rem" />
       <Heading icon={HelpIcon} title={t("srds-route.resources.title")} />
       <WikiItems />
@@ -57,28 +56,19 @@ export function Srds() {
   );
 }
 
-const FateCondensedLinks: { [language in IPossibleLanguages]?: string } = {
-  "en": "/srds/condensed",
-  "pt-BR": "/pt-br/srds/condensed",
-};
+// const FateCondensedLinks: { [language in IPossibleLanguages]?: string } = {
+//   "en": "/srds/condensed",
+//   "pt-BR": "/pt-br/srds/condensed",
+// };
 export function SrdItems() {
-  const { currentLanguage, t } = useTranslate();
+  const { t } = useTranslate();
 
-  const fateCondensedLink =
-    FateCondensedLinks[currentLanguage] ?? (FateCondensedLinks["en"] as string);
+  // const fateCondensedLink =
+  //   FateCondensedLinks[currentLanguage] ?? (FateCondensedLinks["en"] as string);
 
   return (
     <Box>
       <Grid container spacing={4} justifyContent="center">
-        <Grid item xs={12} sm={6} md={4}>
-          <DocCard
-            title={t("docs.fate-condensed.title")}
-            description={t("docs.fate-condensed.description")}
-            bgColor="#007fda"
-            imageUrl={Images.condensed}
-            link={fateCondensedLink}
-          />
-        </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <DocCard
             title={t("docs.fate-core.title")}
@@ -88,56 +78,12 @@ export function SrdItems() {
             link="/srds/core"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <DocCard
-            title={t("docs.fate-accelerated.title")}
-            description={t("docs.fate-accelerated.description")}
-            bgColor="#005aba"
-            imageUrl={Images.accelerated}
-            link="/srds/accelerated"
-          />
-        </Grid>
       </Grid>
     </Box>
   );
 }
 
-export function ToolkitItems() {
-  const { t } = useTranslate();
-  return (
-    <Box>
-      <Grid container spacing={4} justifyContent="center">
-        <Grid item xs={12} sm={6} md={4}>
-          <DocCard
-            title={t("docs.fate-system-toolkit.title")}
-            description={t("docs.fate-system-toolkit.description")}
-            bgColor="#442d74"
-            imageUrl={Images.systemToolkit}
-            link="/srds/system-toolkit"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <DocCard
-            title={t("docs.fate-adversary-toolkit.title")}
-            description={t("docs.fate-adversary-toolkit.description")}
-            bgColor="#1e171c"
-            imageUrl={Images.adversaryToolkit}
-            link="/srds/adversary-toolkit"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <DocCard
-            title={t("docs.dials.title")}
-            description={t("docs.dials.description")}
-            bgColor="#0a0f1c"
-            imageUrl={Images.dials}
-            link="/dials"
-          />
-        </Grid>
-      </Grid>
-    </Box>
-  );
-}
+
 
 export function WikiItems() {
   const { t } = useTranslate();
@@ -151,42 +97,6 @@ export function WikiItems() {
             bgColor="#0c2b69"
             imageUrl={Images.logo}
             link="/fari-wiki"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <DocCard
-            title={t("docs.success-with-style.title")}
-            description={t("docs.success-with-style.description")}
-            bgColor="#080303"
-            imageUrl={Images.successWithStyle}
-            link="/success-with-style"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <DocCard
-            title={t("docs.book-of-monsters.title")}
-            description={t("docs.book-of-monsters.description")}
-            bgColor="#3c5c39"
-            imageUrl={Images.seelieSquire}
-            link="/seeliesquire"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <DocCard
-            title={t("docs.fate-stunts.title")}
-            description={t("docs.fate-stunts.description")}
-            bgColor="#223031"
-            imageUrl={Images.book}
-            link="/fate-stunts"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <DocCard
-            title={t("docs.cheat-sheet.title")}
-            description={t("docs.cheat-sheet.description")}
-            bgColor="#030200"
-            imageUrl={Images.cheatSheet}
-            link="/cheat-sheet"
           />
         </Grid>
       </Grid>
