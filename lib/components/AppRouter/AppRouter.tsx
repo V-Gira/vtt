@@ -32,9 +32,6 @@ const SceneRoute = React.lazy(() => import("../../routes/Scene/SceneRoute"));
 const CardCollection = React.lazy(
   () => import("../../routes/CardCollection/CardCollectionRoute")
 );
-const SeelieSquireRoute = React.lazy(
-  () => import("../../routes/SeelieSquire/SeelieSquireRoute")
-);
 
 export const AppRouter = () => {
   const location = useLocation();
@@ -144,14 +141,6 @@ export const AppRouter = () => {
             )}
           />
         ))}
-
-        <Route
-          exact
-          path={"/seeliesquire/:page?"}
-          render={(props) => (
-            <SeelieSquireRoute page={props.match.params.page} />
-          )}
-        />
 
         <Route
           exact

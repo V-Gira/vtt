@@ -1,6 +1,7 @@
 {
   "name": "singularity",
   "version": "1.0.0",
+  "homepage": "https://V-Gira.github.io/vtt",
   "description": "Singularity is a Virtual Tabletop application based on Fari. License: AGPL-3.0-or-later",
   "author": "V-Jira",
   "license": "AGPL-3.0",
@@ -30,12 +31,10 @@
     "int:start": "concurrently \"cypress open\" \"npm run start\" --success first --kill-others --names \"cypress,server\" ",
     "tsc-and-lint": "npm run tsc && npm run lint",
     "validate": "npm run tsc && npm run lint && npm run test",
-    "deploy:preview": "netlify deploy --site 534c856a-7d30-4fdd-ad4a-9845ccdefd08",
-    "deploy:prod": "netlify deploy --site 534c856a-7d30-4fdd-ad4a-9845ccdefd08 --prod",
-    "storybook": "start-storybook -p 6006 --static-dir ./public",
-    "build-storybook": "build-storybook --static-dir ./public",
     "chromatic": "chromatic --project-token CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes",
-    "clean": "rm -rf node_modules && npm install"
+    "clean": "rm -rf node_modules && npm install",
+    "predeploy": "vite build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@11ty/eleventy": "^0.12.1",
@@ -77,12 +76,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
-    "@storybook/addon-actions": "^6.4.3",
-    "@storybook/addon-essentials": "^6.4.3",
-    "@storybook/addon-links": "^6.4.3",
-    "@storybook/builder-webpack5": "^6.4.3",
-    "@storybook/react": "^6.4.3",
-    "@storybook/manager-webpack5": "^6.4.3",
     "@testing-library/react": "^11.2.7",
     "@testing-library/react-hooks": "^7.0.0",
     "@types/dompurify": "^2.2.2",
@@ -109,6 +102,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "esm": "^3.2.25",
     "fs-extra": "^10.0.0",
+    "gh-pages": "^3.2.3",
     "jest": "^27.0.4",
     "parcel": "1.12.3",
     "prettier": "^2.3.0",

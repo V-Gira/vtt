@@ -52,6 +52,7 @@ import {
   PossibleLanguagesNames,
 } from "../../services/internationalization/InternationalizationService";
 import { AppLink } from "../AppLink/AppLink";
+import { CookieConsent } from "../CookieConsent/CookieConsent";
 import { FateLabel } from "../FateLabel/FateLabel";
 import { ScrollToTop } from "../ScrollToTop/ScrollToTop";
 
@@ -142,12 +143,28 @@ export const Page: React.FC<{
             )}
           </div>
 
-          {/* {renderFooter()} */}
+          {renderFooter()}
         </div>
       </Fade>
     );
   }
 
+  function renderFooter() {
+    return (
+      <Box
+        // TODO: https://github.com/fariapp/fari/issues/212
+        pb={props.pb ?? "0"}
+        displayPrint="none"
+        className={css({
+          paddingTop: "1rem",
+          marginLeft: props.drawerWidth ?? undefined,
+          borderTop: "1px solid #e0e0e0",
+        })}
+      >
+        <CookieConsent />
+        </Box>
+    );
+  }
 
   function renderHeader() {
     const background = highlight.linearBackground;
