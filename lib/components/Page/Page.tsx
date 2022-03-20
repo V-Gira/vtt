@@ -152,13 +152,11 @@ export const Page: React.FC<{
   function renderFooter() {
     return (
       <Box
-        // TODO: https://github.com/fariapp/fari/issues/212
         pb={props.pb ?? "0"}
         displayPrint="none"
         className={css({
           paddingTop: "1rem",
           marginLeft: props.drawerWidth ?? undefined,
-          borderTop: "1px solid #e0e0e0",
         })}
       >
         <CookieConsent />

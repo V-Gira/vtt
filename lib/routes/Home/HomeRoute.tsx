@@ -192,6 +192,20 @@ export const HomeRoute: React.FC<{}> = () => {
         <LightBox px="2rem" mb={sectionsSeparator} maxWidth="lg">
           {renderThirdActionCards()}
         </LightBox>
+        <LightBox px="2rem" mb={sectionsSeparator} maxWidth="md">
+          <>
+            <Heading icon={HelpIcon} title={"Wikis & Resources"} />
+            <WikiItems />
+          </>
+        </LightBox>
+        <DarkBox
+          px="2rem"
+          py="5rem"
+          maxWidth="sm"
+          title={t("home-route.support-fari.title")}
+        >
+          {renderSupport()}
+        </DarkBox>
         <DarkBox
           title={t("home-route.sections.open-source.title")}
           subTitle={t("home-route.sections.open-source.sub-title")}
@@ -201,22 +215,6 @@ export const HomeRoute: React.FC<{}> = () => {
           maxWidth="sm"
         >
           {renderOpenSource()}
-        </DarkBox>
-        <LightBox px="2rem" mb={sectionsSeparator} maxWidth="md">
-          <>
-            <Heading icon={HelpIcon} title={"Wikis & Resources"} />
-            <WikiItems />
-          </>
-        </LightBox>
-
-        <DarkBox
-          px="2rem"
-          py="5rem"
-          maxWidth="sm"
-          mb={sectionsSeparator}
-          title={t("home-route.support-fari.title")}
-        >
-          {renderSupport()}
         </DarkBox>
       </Box>
     </Page>

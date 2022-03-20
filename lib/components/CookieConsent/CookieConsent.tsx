@@ -34,7 +34,7 @@ export const CookieConsent: React.FC = () => {
               color: "inherit",
               textDecoration: "underline",
             })}
-            href="https://www.iubenda.com/privacy-policy/97549620"
+            href="https://www.iubenda.com/privacy-policy/56330851"
             target="_blank"
             rel="noreferrer"
             data-cy="cookie-consent.privacy-policy"
